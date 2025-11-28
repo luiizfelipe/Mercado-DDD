@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+
+	  <OutputType>Library</OutputType>
+    <UserSecretsId>dotnet-Insfraestructure-aa784b9b-13e9-4a62-8ce8-5de0ccd681b5</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="../Domain/Domain.csproj" />
+	</ItemGroup>
+</Project>

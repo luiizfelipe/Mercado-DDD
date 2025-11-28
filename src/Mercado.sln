@@ -4,6 +4,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{6B6FD2D8-76C7-474A-8BE6-2177F34720E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51A5D331-0DE6-45B5-B82C-A09E7EDAE75F} = {51A5D331-0DE6-45B5-B82C-A09E7EDAE75F}
+		{E08E9701-AD74-CFDB-4C48-DBB8454E07A8} = {E08E9701-AD74-CFDB-4C48-DBB8454E07A8}
+		{E528BBC3-1C26-8C35-F682-23718816ADCD} = {E528BBC3-1C26-8C35-F682-23718816ADCD}
+		{F80C4E72-27A0-12B5-0634-DD5C11CFB0C1} = {F80C4E72-27A0-12B5-0634-DD5C11CFB0C1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{51A5D331-0DE6-45B5-B82C-A09E7EDAE75F}"
 EndProject
@@ -11,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{E528BBC3-1C26-8C35-F682-23718816ADCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insfraestructure", "Insfraestructure\Insfraestructure.csproj", "{E08E9701-AD74-CFDB-4C48-DBB8454E07A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{E08E9701-AD74-CFDB-4C48-DBB8454E07A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
