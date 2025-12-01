@@ -1,12 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-
-	  <OutputType>Library</OutputType>
-    <UserSecretsId>dotnet-CrossCutting-51eb5e6f-0cbe-44a3-a9cd-18b0fbc8d04e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

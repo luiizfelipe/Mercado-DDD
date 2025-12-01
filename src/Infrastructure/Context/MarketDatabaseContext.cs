@@ -1,19 +1,22 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Utils.Tools;
 
 namespace Infrastructure.Context
 
 {
     public class  MarketDatabaseContext(DbContextOptions<MarketDatabaseContext> options): DbContext(options)
     {
-        public DbSet<ProductEntity> Product { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ProductEntity>();
-            
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MarketDatabaseContext).Assembly);
         }
+
+
     }
 }

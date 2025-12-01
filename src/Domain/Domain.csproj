@@ -1,12 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-
-	  <OutputType>Library</OutputType>
-    <UserSecretsId>dotnet-Domain-01e33143-d441-40f2-930f-1c09a02e6762</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
