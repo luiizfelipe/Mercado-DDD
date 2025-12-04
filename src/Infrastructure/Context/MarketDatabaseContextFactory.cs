@@ -1,9 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
-using Utils.Tools;
 
 namespace Infrastructure.Context;
 
@@ -11,13 +8,11 @@ public class MarketDatabaseContextFactory : IDesignTimeDbContextFactory<MarketDa
 {
     public MarketDatabaseContext CreateDbContext(string[] args)
     {
-        IConfiguration configuration = Configuration.BuildConfiguration();
 
         var optionsBuilder = new DbContextOptionsBuilder<MarketDatabaseContext>();
 
-        var connectionString = configuration.GetConnectionString("PostgresConnection");
+        var connectionString = "Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=market-ddd;";
 
-        Console.WriteLine("aaa");
         if (string.IsNullOrEmpty(connectionString))
         {
             Console.WriteLine("Erro");
