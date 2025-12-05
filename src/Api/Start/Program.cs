@@ -1,3 +1,4 @@
+using Api.Middlewares;
 using CrossCutting.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,11 +11,15 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        RepositoryInjection.Register(builder.Services, builder.Configuration);
-        builder.Services.AddControllers();
 
+        
+        RepositoryInjection.Register(builder.Services, builder.Configuration);
+        ServiceInjection.Register(builder.Services, builder.Configuration);
+        builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddHttpContextAccessor();
+
 
         var app = builder.Build();
 
@@ -23,6 +28,7 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.UseMiddleware<ExceptionMiddleware>();
 
         app.UseHttpsRedirection();
 
