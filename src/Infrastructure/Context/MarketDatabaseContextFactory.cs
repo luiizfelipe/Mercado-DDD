@@ -20,7 +20,6 @@ public class MarketDatabaseContextFactory : IDesignTimeDbContextFactory<MarketDa
         }
 
         optionsBuilder.UseNpgsql(connectionString).EnableDetailedErrors();
-        Console.WriteLine("Success");
 
         return new MarketDatabaseContext(optionsBuilder.Options);
     }
