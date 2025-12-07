@@ -92,5 +92,7 @@ O projeto é dividido em etapas (tasks) organizadas para facilitar o crescimento
 ```bash
 # Clonar o repositório
 git clone https://github.com/luiizfelipe/Mercado-DDD.git
-cd Mercado-DDD
+cd Mercado-DDD/src
+dotnet ef database update -p Infrastructure -s Api
+
 
