@@ -11,11 +11,6 @@ namespace Api.Controllers.Products
     {
         private readonly IProductsService _productsService = productsService;
 
-        [HttpPost(Name = "Create Products")]
-        public async Task<ActionResult<List<ProductEntity>>> CreateProducts([FromBody] List<ProductEntity> products) {
-            return await _productsService.Post(products); ;
-        }
-
         [HttpGet(Name = "Find Product by Id")]
         public async Task<ActionResult<ProductEntity>> FindProductById(Guid id)
         {
@@ -23,6 +18,20 @@ namespace Api.Controllers.Products
             return Ok(product);
 
         }
+
+        [HttpPost(Name = "Create Products")]
+        public async Task<ActionResult<List<ProductEntity>>> CreateProducts([FromBody] List<ProductEntity> products) {
+            return await _productsService.Post(products); ;
+        }
+
+        [HttpPut(Name = "Update Product by Id")]
+        public async Task<ActionResult<ProductEntity>> UpdateProductById(Guid id, ProductEntity product)
+        {
+            ProductEntity product = await _productsService.(id);
+            return Ok(product);
+
+        }
+
 
     }
 }
