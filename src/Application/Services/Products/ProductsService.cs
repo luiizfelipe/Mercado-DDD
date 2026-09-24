@@ -16,6 +16,16 @@ namespace Application.Services.Products
 
         private readonly IBaseRepository<ProductEntity> _baseRepository = baseRepository;
 
+
+        public async Task<List<ProductEntity>> Get() {
+            IEnumerable<ProductEntity>? products = await _baseRepository.GetAllAsync();
+
+            if(products == null)
+                throw new Exception("Erro ao buscar produto");
+
+            return products.ToList();
+        }
+
         public async Task<ProductEntity> Get(Guid id)
         {
             ProductEntity? product = await _baseRepository.GetByIdAsync(id);

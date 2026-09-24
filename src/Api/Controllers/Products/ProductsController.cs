@@ -11,6 +11,15 @@ namespace Api.Controllers.Products
     {
         private readonly IProductsService _productsService = productsService;
 
+
+        [HttpGet("/")]
+        public async Task<ActionResult<List<ProductEntity>>> Get()
+        {
+            List<ProductEntity> products = await _productsService.Get();
+            return Ok(products);
+        }
+
+
         [HttpGet(Name = "Find Product by Id")]
         public async Task<ActionResult<ProductEntity>> FindProductById(Guid id)
         {
@@ -27,8 +36,8 @@ namespace Api.Controllers.Products
         [HttpPut(Name = "Update Product by Id")]
         public async Task<ActionResult<ProductEntity>> UpdateProductById(Guid id, ProductEntity product)
         {
-            ProductEntity product = await _productsService.(id);
-            return Ok(product);
+            ProductEntity produtcToUpdate = await _productsService.Get(id);
+            return Ok(produtcToUpdate);
 
         }
 

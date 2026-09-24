@@ -11,11 +11,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
   </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="../Application/Application.csproj" />
-		<ProjectReference Include="../CrossCutting/CrossCutting.csproj"  />
+		<ProjectReference Include="../CrossCutting/CrossCutting.csproj" />
 		<ProjectReference Include="../Domain/Domain.csproj" />
 		<ProjectReference Include="../Infrastructure/Infrastructure.csproj" />
 		<ProjectReference Include="../Utils/Utils.csproj" />

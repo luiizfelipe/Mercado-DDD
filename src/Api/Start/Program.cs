@@ -10,11 +10,10 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-
-        
+     
         RepositoryInjection.Register(builder.Services, builder.Configuration);
         ServiceInjection.Register(builder.Services, builder.Configuration);
+        builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -29,12 +28,15 @@ internal class Program
             app.UseSwaggerUI();
         }
         app.UseMiddleware<ExceptionMiddleware>();
+        app.UseMiddleware<LoggingMiddleware>();
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
         app.MapControllers();
+
+        app.MapReverseProxy();
 
         app.Run();
     }

@@ -7,6 +7,8 @@ namespace Domain.Interfaces.Services.Products
 {
     public interface IProductsService
     {
+        Task<List<ProductEntity>> Get();
+
         Task<ProductEntity> Get(Guid id);
 
         Task<List<ProductEntity>> Post(List<ProductEntity> product);
