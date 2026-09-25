@@ -11,6 +11,7 @@ namespace Domain.Interfaces.Services.Products
 
         Task<ProductEntity> Get(Guid id);
 
+        Task<ProductEntity> Post(ProductEntity product);
         Task<List<ProductEntity>> Post(List<ProductEntity> product);
 
     }

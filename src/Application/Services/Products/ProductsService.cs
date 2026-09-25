@@ -30,9 +30,6 @@ namespace Application.Services.Products
         {
             ProductEntity? product = await _baseRepository.GetByIdAsync(id);
 
-            if (product == null)
-                throw new Exception("Produto não encontrado");
-
             return product;
         }
 
@@ -41,6 +38,21 @@ namespace Application.Services.Products
             try
             {
                 await _baseRepository.AddAsync(product[0]);
+                await _baseRepository.SaveChangesAsync();
+
+                return product;
+            }
+            catch (DbUpdateException db)
+            {
+                throw new ProductAlreadyExistsException();
+            }
+        }
+
+        public async Task<ProductEntity> Post(ProductEntity product)
+        {
+            try
+            {
+                await _baseRepository.AddAsync(product);
                 await _baseRepository.SaveChangesAsync();
 
                 return product;

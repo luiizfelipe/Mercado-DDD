@@ -20,7 +20,8 @@ namespace Api.Controllers.Products
         }
 
 
-        [HttpGet(Name = "Find Product by Id")]
+        [HttpGet("/{id}",Name = "Find Product by Id")]
+
         public async Task<ActionResult<ProductEntity>> FindProductById(Guid id)
         {
             ProductEntity product = await _productsService.Get(id);
