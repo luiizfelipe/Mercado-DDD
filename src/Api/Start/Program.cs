@@ -1,13 +1,15 @@
 using Api.Middlewares;
 using CrossCutting.DependencyInjection;
+using Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Api.Start;
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
      
@@ -30,6 +32,31 @@ internal class Program
         });
 
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<MarketDatabaseContext>();
+
+            try
+            {
+                var result = await db.Database.CanConnectAsync();
+
+                Console.WriteLine($"[+] Banco conectado: {result} [+]");
+
+                var pendingMigrations = db.Database
+            .GetPendingMigrations();
+
+                foreach (var migration in pendingMigrations)
+                {
+                    Console.WriteLine($"Migration pendente: {migration}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
 
         if (app.Environment.IsDevelopment())
         {

@@ -23,11 +23,5 @@ public class MarketDatabaseContextFactory : IDesignTimeDbContextFactory<MarketDa
 
         return new MarketDatabaseContext(optionsBuilder.Options);
     }
-
-    internal object CreateDbContext()
-    {
-        throw new Exception("Design time factory not implemented");
-    }
-
     
 }
