@@ -10,13 +10,11 @@ namespace Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<decimal>(
-                name: "Price",
-                table: "Products",
-                type: "numeric",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
+            migrationBuilder.Sql("""
+    ALTER TABLE "Products"
+    ALTER COLUMN "Price" TYPE numeric
+    USING "Price"::numeric;
+""");
 
             migrationBuilder.AddColumn<bool>(
                 name: "Active",
