@@ -12,23 +12,23 @@ namespace Api.Controllers.Products
         private readonly IProductsService _productsService = productsService;
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductEntity>>> Get()
+        public async Task<ActionResult<List<Product>>> Get()
         {
-            List<ProductEntity> products = await _productsService.Get();
+            List<Product> products = await _productsService.Get();
             return Ok(products);
         }
 
         [HttpGet("{id}", Name = "Find Product by Id")]
 
-        public async Task<ActionResult<ProductEntity>> FindProductById(Guid id)
+        public async Task<ActionResult<Product>> FindProductById(Guid id)
         {
-            ProductEntity product = await _productsService.Get(id);
+            Product product = await _productsService.Get(id);
             return Ok(product);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductEntity>> CreateProduct(
-            [FromBody] ProductEntity product)
+        public async Task<ActionResult<Product>> CreateProduct(
+            [FromBody] Product product)
         {
             var created = await _productsService.Post(product);
 
@@ -39,8 +39,8 @@ namespace Api.Controllers.Products
         }
 
         [HttpPost("bulk")]
-        public async Task<ActionResult<List<ProductEntity>>> CreateProducts(
-            [FromBody] List<ProductEntity> products)
+        public async Task<ActionResult<List<Product>>> CreateProducts(
+            [FromBody] List<Product> products)
         {
             var created = await _productsService.Post(products);
 
@@ -48,7 +48,7 @@ namespace Api.Controllers.Products
         }
 
         [HttpPut("{id}", Name = "Update Product by Id")]
-        public async Task<ActionResult<ProductEntity>> UpdateProductById(Guid id, ProductEntity product)
+        public async Task<ActionResult<Product>> UpdateProductById(Guid id, Product product)
         {
             var updatedProduct = await _productsService.Update(id, product);
 

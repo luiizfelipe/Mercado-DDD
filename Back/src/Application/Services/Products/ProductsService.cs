@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Products
 {
-    public class ProductsService(IBaseRepository<ProductEntity> baseRepository) : IProductsService
+    public class ProductsService(IBaseRepository<Product> baseRepository) : IProductsService
     {
 
-        private readonly IBaseRepository<ProductEntity> _baseRepository = baseRepository;
+        private readonly IBaseRepository<Product> _baseRepository = baseRepository;
 
 
-        public async Task<List<ProductEntity>> Get() {
-            IEnumerable<ProductEntity>? products = await _baseRepository.GetAllAsync();
+        public async Task<List<Product>> Get() {
+            IEnumerable<Product>? products = await _baseRepository.GetAllAsync();
 
             if(products == null)
                 throw new Exception("Erro ao buscar produto");
@@ -28,14 +28,14 @@ namespace Application.Services.Products
             return products.ToList();
         }
 
-        public async Task<ProductEntity> Get(Guid id)
+        public async Task<Product> Get(Guid id)
         {
-            ProductEntity? product = await _baseRepository.GetByIdAsync(id);
+            Product? product = await _baseRepository.GetByIdAsync(id);
 
             return product;
         }
 
-        public async Task<List<ProductEntity>> Post(List<ProductEntity> product)
+        public async Task<List<Product>> Post(List<Product> product)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Application.Services.Products
             }
         }
 
-        public async Task<ProductEntity> Post(ProductEntity product)
+        public async Task<Product> Post(Product product)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Application.Services.Products
             }
         }
 
-        public async Task<ProductEntity> Update(Guid id, ProductEntity product)
+        public async Task<Product> Update(Guid id, Product product)
         {
             try
             {

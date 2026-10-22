@@ -1,6 +1,6 @@
 namespace Domain.Entities
 {
-    public class ProductEntity : BaseEntity
+    public class Product : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
 

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Mapping;
 
-public class ProductMap : IEntityTypeConfiguration<ProductEntity>
+public class ProductMap : IEntityTypeConfiguration<Product>
 {
-    public void Configure(EntityTypeBuilder<ProductEntity> builder)
+    public void Configure(EntityTypeBuilder<Product> builder)
     {
         builder.ToTable("Products");
         builder.HasKey(e => e.Id);
