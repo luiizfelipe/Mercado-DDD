@@ -1,14 +1,11 @@
-﻿using Api.Domain.Interfaces;
+﻿using Application.Interfaces.Services;
 using Domain.Entities;
-using Domain.Exceptions;
 using Domain.Exceptions.Products;
-using Domain.Interfaces.Services.Products;
+using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Services.Products

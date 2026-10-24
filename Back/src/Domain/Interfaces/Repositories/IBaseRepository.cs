@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Api.Domain.Interfaces
+namespace Domain.Interfaces.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {
