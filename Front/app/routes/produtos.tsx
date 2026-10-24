@@ -16,44 +16,44 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { ProductForm } from "~/features/products/components/ProductForm";
-import { ProductTable } from "~/features/products/components/ProductTable";
-import { useProducts } from "~/features/products/hooks/useProducts";
-import type { Product } from "~/features/products/types";
+import { FormularioProduto } from "~/components/FormularioProduto";
+import { TabelaProdutos } from "~/components/TabelaProdutos";
+import { useProdutos } from "~/hooks/useProdutos";
+import type { Produto } from "~/types/product";
 
-export default function ProductsPage() {
+export default function PaginaProdutos() {
   const {
-    products,
-    loading,
-    saving,
-    error,
-    create,
-    update,
-    remove,
-    reload,
-  } = useProducts();
+    produtos,
+    carregando,
+    salvando,
+    erro,
+    criar,
+    atualizar,
+    remover,
+    recarregar,
+  } = useProdutos();
 
-  const [editing, setEditing] = useState<Product | null>(null);
+  const [editing, setEditing] = useState<Produto | null>(null);
   const [open, setOpen] = useState(false);
 
-  async function handleSubmit(data: Parameters<typeof create>[0]) {
+  async function salvarProduto(data: Parameters<typeof criar>[0]) {
     if (editing) {
-      await update(editing.id, data);
+      await atualizar(editing.id, data);
     } else {
-      await create(data);
+      await criar(data);
     }
 
     setEditing(null);
     setOpen(false);
   }
 
-  async function handleDelete(product: Product) {
+  async function excluirProduto(produto: Produto) {
     const confirmed = window.confirm(
-      `Deseja excluir o produto "${product.name}"?`,
+      `Deseja excluir o produto "${produto.name}"?`,
     );
 
     if (confirmed) {
-      await remove(product.id);
+      await remover(produto.id);
     }
   }
 
@@ -80,33 +80,33 @@ export default function ProductsPage() {
           </Button>
         </HStack>
 
-        {error && (
+        {erro && (
           <Alert status="error">
-            <Text>{error}</Text>
+            <Text>{erro}</Text>
           </Alert>
         )}
 
         <Box borderWidth="1px" borderRadius="lg" p="5">
-          {loading ? (
+          {carregando ? (
             <HStack justify="center" py="12">
               <Spinner />
 
               <Text>Carregando produtos...</Text>
             </HStack>
           ) : (
-            <ProductTable
-              products={products}
-              onEdit={(product) => {
-                setEditing(product);
+            <TabelaProdutos
+              produtos={produtos}
+              aoEditar={(produto) => {
+                setEditing(produto);
                 setOpen(true);
               }}
-              onDelete={handleDelete}
+              aoExcluir={excluirProduto}
             />
           )}
         </Box>
 
         <HStack justify="flex-end">
-          <Button variant="ghost" onClick={() => void reload()}>
+          <Button variant="ghost" onClick={() => void recarregar()}>
             Atualizar
           </Button>
         </HStack>
@@ -127,11 +127,11 @@ export default function ProductsPage() {
           <ModalCloseButton />
 
           <ModalBody pb={6}>
-            <ProductForm
-              product={editing}
-              loading={saving}
-              onSubmit={handleSubmit}
-              onCancel={() => setOpen(false)}
+            <FormularioProduto
+              produto={editing}
+              carregando={salvando}
+              aoSalvar={salvarProduto}
+              aoCancelar={() => setOpen(false)}
             />
           </ModalBody>
         </ModalContent>
@@ -139,3 +139,6 @@ export default function ProductsPage() {
     </Box>
   );
 }
+
+
+

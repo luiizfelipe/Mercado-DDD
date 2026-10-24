@@ -10,20 +10,20 @@ import {
   Tr,
 } from "@chakra-ui/react";
 
-import type { Product } from "../types";
+import type { Produto } from "~/types/product";
 
-type Props = {
-  products: Product[];
-  onEdit: (product: Product) => void;
-  onDelete: (product: Product) => void;
+type Propriedades = {
+  produtos: Produto[];
+  aoEditar: (produto: Produto) => void;
+  aoExcluir: (produto: Produto) => void;
 };
 
-export function ProductTable({
-  products,
-  onEdit,
-  onDelete,
-}: Props) {
-  if (!products.length) {
+export function TabelaProdutos({
+  produtos,
+  aoEditar,
+  aoExcluir,
+}: Propriedades) {
+  if (!produtos.length) {
     return (
       <Text color="gray.500">
         Nenhum produto encontrado.
@@ -44,25 +44,25 @@ export function ProductTable({
       </Thead>
 
       <Tbody>
-        {products.map((product) => (
-          <Tr key={product.id}>
+        {produtos.map((produto) => (
+          <Tr key={produto.id}>
             <Td>
               <Text fontWeight="medium">
-                {product.name}
+                {produto.name}
               </Text>
             </Td>
 
             <Td>
               R${" "}
-              {product.price
+              {produto.price
                 .toFixed(2)
                 .replace(".", ",")}
             </Td>
 
-            <Td>{product.stock}</Td>
+            <Td>{produto.stock}</Td>
 
             <Td>
-              {product.active ? "Ativo" : "Inativo"}
+              {produto.active ? "Ativo" : "Inativo"}
             </Td>
 
             <Td>
@@ -70,7 +70,7 @@ export function ProductTable({
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => onEdit(product)}
+                  onClick={() => aoEditar(produto)}
                 >
                   Editar
                 </Button>
@@ -79,7 +79,7 @@ export function ProductTable({
                   size="sm"
                   colorScheme="red"
                   variant="outline"
-                  onClick={() => onDelete(product)}
+                  onClick={() => aoExcluir(produto)}
                 >
                   Excluir
                 </Button>
@@ -91,3 +91,4 @@ export function ProductTable({
     </Table>
   );
 }
+

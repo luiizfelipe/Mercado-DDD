@@ -1,12 +1,3 @@
-# Lib
+# Infraestrutura
 
-Infraestrutura compartilhada da aplicação.
-
-Exemplos futuros:
-
-- HTTP client
-- autenticação
-- storage
-- tratamento global de erros
-- telemetry
-- websocket/signalR
+Cliente HTTP, autenticação, armazenamento e demais integrações da aplicação.

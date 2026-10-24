@@ -1,5 +1,5 @@
-export type Product = {
-  id: number;
+export type Produto = {
+  id: string;
   name: string;
   description?: string | null;
   price: number;
@@ -7,7 +7,7 @@ export type Product = {
   active: boolean;
 };
 
-export type ProductRequest = {
+export type CadastroProduto = {
   name: string;
   description?: string;
   price: number;

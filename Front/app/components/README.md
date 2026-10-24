@@ -1,6 +1,4 @@
-# Components
+# Organização
 
-Componentes realmente compartilhados entre features.
-
-Regra prática:
-se o componente só pertence a Produtos, mantenha em `features/products/components`.
+Páginas em `routes/`, componentes em `components/`, hooks em `hooks/`, tipos
+em `types/` e chamadas HTTP em `lib/http/`.

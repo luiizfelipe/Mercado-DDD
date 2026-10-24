@@ -11,16 +11,16 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-import type { Product, ProductRequest } from "../types";
+import type { CadastroProduto, Produto } from "~/types/product";
 
-type Props = {
-  product?: Product | null;
-  loading?: boolean;
-  onSubmit: (data: ProductRequest) => Promise<void>;
-  onCancel: () => void;
+type Propriedades = {
+  produto?: Produto | null;
+  carregando?: boolean;
+  aoSalvar: (dados: CadastroProduto) => Promise<void>;
+  aoCancelar: () => void;
 };
 
-const emptyForm: ProductRequest = {
+const formularioVazio: CadastroProduto = {
   name: "",
   description: "",
   price: 0,
@@ -28,40 +28,40 @@ const emptyForm: ProductRequest = {
   active: true,
 };
 
-export function ProductForm({
-  product,
-  loading = false,
-  onSubmit,
-  onCancel,
-}: Props) {
-  const [form, setForm] = useState<ProductRequest>(emptyForm);
+export function FormularioProduto({
+  produto,
+  carregando = false,
+  aoSalvar,
+  aoCancelar,
+}: Propriedades) {
+  const [formulario, setFormulario] = useState<CadastroProduto>(formularioVazio);
 
   useEffect(() => {
-    if (product) {
-      setForm({
-        name: product.name,
-        description: product.description ?? "",
-        price: product.price,
-        stock: product.stock,
-        active: product.active,
+    if (produto) {
+      setFormulario({
+        name: produto.name,
+        description: produto.description ?? "",
+        price: produto.price,
+        stock: produto.stock,
+        active: produto.active,
       });
     } else {
-      setForm({ ...emptyForm });
+      setFormulario({ ...formularioVazio });
     }
-  }, [product]);
+  }, [produto]);
 
-  function update<K extends keyof ProductRequest>(
-    field: K,
-    value: ProductRequest[K],
+  function atualizar<K extends keyof CadastroProduto>(
+    campo: K,
+    valor: CadastroProduto[K],
   ) {
-    setForm((current) => ({
-      ...current,
-      [field]: value,
+    setFormulario((atual) => ({
+      ...atual,
+      [campo]: valor,
     }));
   }
 
-  async function handleSubmit() {
-    await onSubmit(form);
+  async function salvar() {
+    await aoSalvar(formulario);
   }
 
   return (
@@ -70,9 +70,9 @@ export function ProductForm({
         <FormLabel>Nome</FormLabel>
 
         <Input
-          value={form.name}
-          onChange={(e) => update("name", e.target.value)}
-          placeholder="Ex.: Arroz 5kg"
+          value={formulario.name}
+          onChange={(e) => atualizar("name", e.target.value)}
+          placeholder="Ex.: Arroz 5 kg"
         />
       </FormControl>
 
@@ -80,8 +80,8 @@ export function ProductForm({
         <FormLabel>Descrição</FormLabel>
 
         <Textarea
-          value={form.description}
-          onChange={(e) => update("description", e.target.value)}
+          value={formulario.description}
+          onChange={(e) => atualizar("description", e.target.value)}
           placeholder="Descrição do produto"
         />
       </FormControl>
@@ -91,9 +91,9 @@ export function ProductForm({
 
         <NumberInput
           min={0}
-          value={String(form.price)}
+          value={String(formulario.price)}
           onChange={(_, valueAsNumber) =>
-            update(
+            atualizar(
               "price",
               Number.isNaN(valueAsNumber) ? 0 : valueAsNumber,
             )
@@ -108,9 +108,9 @@ export function ProductForm({
 
         <NumberInput
           min={0}
-          value={String(form.stock)}
+          value={String(formulario.stock)}
           onChange={(_, valueAsNumber) =>
-            update(
+            atualizar(
               "stock",
               Number.isNaN(valueAsNumber) ? 0 : valueAsNumber,
             )
@@ -121,8 +121,8 @@ export function ProductForm({
       </FormControl>
 
       <Switch
-        isChecked={form.active}
-        onChange={(e) => update("active", e.target.checked)}
+        isChecked={formulario.active}
+        onChange={(e) => atualizar("active", e.target.checked)}
       >
         Produto ativo
       </Switch>
@@ -130,16 +130,16 @@ export function ProductForm({
       <Stack direction="row" justify="flex-end">
         <Button
           variant="outline"
-          onClick={onCancel}
-          isDisabled={loading}
+          onClick={aoCancelar}
+          isDisabled={carregando}
         >
           Cancelar
         </Button>
 
         <Button
           colorScheme="blue"
-          isLoading={loading}
-          onClick={() => void handleSubmit()}
+          isLoading={carregando}
+          onClick={() => void salvar()}
         >
           Salvar
         </Button>
@@ -147,3 +147,4 @@ export function ProductForm({
     </Stack>
   );
 }
+

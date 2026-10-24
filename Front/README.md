@@ -1,45 +1,22 @@
-# Mercado Frontend
+# Mercado
 
-Frontend base em React Router + TypeScript + Chakra UI, preparado para crescer em módulos.
+Aplicação web em React Router, TypeScript e Chakra UI para organizar produtos e pedidos.
 
 ## Estrutura
 
-- `app/`
-  - `components/`: componentes reutilizáveis
-  - `config/`: configuração da aplicação
-  - `features/`: módulos por domínio
-  - `hooks/`: hooks compartilhados
-  - `layouts/`: layouts
-  - `lib/`: infraestrutura HTTP
-  - `routes/`: páginas/rotas
-  - `types/`: tipos globais
-  - `root.tsx`: shell da aplicação
-  - `app.css`: estilos globais
+- `app/components/`: componentes de interface
+- `app/config/`: configuração da aplicação
+- `app/hooks/`: hooks React
+- `app/lib/http/`: cliente HTTP e chamadas à API
+- `app/routes/`: páginas da aplicação
+- `app/types/`: tipos TypeScript
 
 ## API
 
-A URL base é definida em `.env`:
+Configure a URL base no arquivo `.env`:
 
 `VITE_API_URL=http://localhost:5000/api`
 
-O módulo de produtos usa:
+As chamadas HTTP ficam centralizadas em `app/lib/http/`.
 
-- `GET /api/produtos`
-- `GET /api/produtos/{id}`
-- `POST /api/produtos`
-- `PUT /api/produtos/{id}`
-- `DELETE /api/produtos/{id}`
-
-Os endpoints estão centralizados em `app/features/products/api/productsApi.ts`.
-
-## Como usar
-
-Copie os arquivos para o seu projeto React Router existente.
-
-Instale Chakra UI caso ainda não esteja instalado:
-
-`npm install @chakra-ui/react @emotion/react`
-
-Depois configure `.env` com a URL da sua API.
-
-A tela inicial é `/produtos`.
+A página inicial é `/`, o catálogo é `/produtos` e a criação de pedidos é `/pedidos/novo`.
