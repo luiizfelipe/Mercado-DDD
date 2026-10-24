@@ -1,6 +1,5 @@
-﻿using Domain.Entities;
-using Domain.Interfaces.Services.Products;
-using Microsoft.AspNetCore.Http;
+﻿using Application.Interfaces.Services;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Products

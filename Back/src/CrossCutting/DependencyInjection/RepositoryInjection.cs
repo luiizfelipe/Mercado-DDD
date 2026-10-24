@@ -1,10 +1,9 @@
-using Api.Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 
 namespace CrossCutting.DependencyInjection;
