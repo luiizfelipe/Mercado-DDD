@@ -1,5 +1,8 @@
 import {
+  Badge,
+  Box,
   Button,
+  Hide,
   HStack,
   Table,
   Tbody,
@@ -25,9 +28,10 @@ export function TabelaProdutos({
 }: Propriedades) {
   if (!produtos.length) {
     return (
-      <Text color="gray.500">
-        Nenhum produto encontrado.
-      </Text>
+      <Box px={6} py={12} textAlign="center">
+        <Text fontSize="lg" fontWeight="semibold">Seu catálogo está vazio</Text>
+        <Text color="gray.500" mt={2}>Adicione seu primeiro produto para começar a organizar o estoque.</Text>
+      </Box>
     );
   }
 
@@ -35,21 +39,22 @@ export function TabelaProdutos({
     <Table variant="simple">
       <Thead>
         <Tr>
-          <Th>Nome</Th>
+          <Th px={6}>Produto</Th>
           <Th>Preço</Th>
           <Th>Estoque</Th>
-          <Th>Status</Th>
-          <Th textAlign="right">Ações</Th>
+          <Hide below="md"><Th>Status</Th></Hide>
+          <Th textAlign="right" px={6}>Ações</Th>
         </Tr>
       </Thead>
 
       <Tbody>
         {produtos.map((produto) => (
           <Tr key={produto.id}>
-            <Td>
+            <Td px={6}>
               <Text fontWeight="medium">
                 {produto.name}
               </Text>
+              {produto.description && <Text color="gray.500" fontSize="sm" noOfLines={1} maxW="360px">{produto.description}</Text>}
             </Td>
 
             <Td>
@@ -61,15 +66,14 @@ export function TabelaProdutos({
 
             <Td>{produto.stock}</Td>
 
-            <Td>
-              {produto.active ? "Ativo" : "Inativo"}
-            </Td>
+            <Hide below="md"><Td><Badge colorScheme={produto.active ? "green" : "gray"} borderRadius="full" px={2}>{produto.active ? "Ativo" : "Inativo"}</Badge></Td></Hide>
 
-            <Td>
-              <HStack justify="flex-end">
+            <Td px={6}>
+              <HStack justify="flex-end" spacing={2}>
                 <Button
                   size="sm"
                   variant="outline"
+                  borderRadius="lg"
                   onClick={() => aoEditar(produto)}
                 >
                   Editar
@@ -78,7 +82,8 @@ export function TabelaProdutos({
                 <Button
                   size="sm"
                   colorScheme="red"
-                  variant="outline"
+                  variant="ghost"
+                  borderRadius="lg"
                   onClick={() => aoExcluir(produto)}
                 >
                   Excluir
